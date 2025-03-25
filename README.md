@@ -1,24 +1,66 @@
-#### Ход работы
-#### Установим библиотеку: D:\Документы\Учеба\джанго\myproject>pip install django-cleanup
-#### Добавляю сервис в myproject/settings.py: django_cleanup.apps.CleanupConfig
-#### Установка следующей библиотеки: D:\Документы\Учеба\джанго\myproject>pip install django-cleanup
-#### Добавлю в INSTALLED_APPS rest_framework/
-![image](https://github.com/user-attachments/assets/18142147-e22f-4fe6-b5af-e137122a34c5)
-#### Создал виртуальное окружение и создал реквайрментс:
-![image](https://github.com/user-attachments/assets/6a689ee4-0cda-4292-b0f7-14a9345240ff)
-#### Создаем файл serializers.py в /accounts/:
-![image](https://github.com/user-attachments/assets/c35aee98-bb26-4b14-a3d5-453438c28fd6)
-#### заполняем:
-![image](https://github.com/user-attachments/assets/9c99a80d-9c85-4721-b865-4a47d6f3be8d)
-#### В myapp:
-![image](https://github.com/user-attachments/assets/dc6a8300-7960-4e6a-8431-b949041f50ec)
-#### Дополняем vievs.py в accounts:
-![image](https://github.com/user-attachments/assets/f4ca1b83-f904-47d6-badc-23d905ccc329)
-#### И в myapp:
-![image](https://github.com/user-attachments/assets/1a19e0ee-4702-4ef8-aa07-1bfbeae75b24)
-#### Работа сервисов:
-![image](https://github.com/user-attachments/assets/e379dc9e-4075-4a07-9dbf-9c5e588d41e2)
-![image](https://github.com/user-attachments/assets/a3d46481-c694-49fc-86f4-576d227d0009)
-![image](https://github.com/user-attachments/assets/7f51c149-0ee6-4d9d-b85c-cb0d843e0cf9)
-#### API добавлено
-#### Конец, создаю пул реквест
+## Реализация авторизации и прав доступа
+
+### 1. Настройка прав в `settings.py`
+![image](https://github.com/user-attachments/assets/ef6baf8a-2f1e-45a6-8ecf-7125485f33ea)
+
+---
+
+### 2. Обновил `views.py`
+![image](https://github.com/user-attachments/assets/06e0e458-023a-4277-a36c-1b52349a8ad2)
+
+---
+
+### 3. Редактирую `permissions.py`
+![image](https://github.com/user-attachments/assets/26e36df6-483b-4e78-9c1b-fa5589ad4320)
+
+---
+
+### 4. Добавил права в аккаунты
+![image](https://github.com/user-attachments/assets/57036b80-092e-4777-a306-f565168e4de2)
+
+---
+
+### 5. Проверка прав — скрытие информации для неавторизованных
+![image](https://github.com/user-attachments/assets/cf016fc4-3a53-49e2-8bd6-96579a371e96)
+
+---
+
+## Реализация авторизации по токену
+
+- Установлены библиотеки:
+  ```
+  pip install djangorestframework
+  pip install djangorestframework-simplejwt
+  ```
+
+- Добавлен `rest_framework.authtoken` в `INSTALLED_APPS`
+
+- Выполнена миграция:
+  ```
+  python manage.py migrate
+  ```
+  ![image](https://github.com/user-attachments/assets/92a25576-e044-4613-ba11-77c3c124ca83)
+
+- Подключён `obtain_auth_token` в `urls.py`
+
+---
+
+### Получение токена для пользователя `admin/admin`
+![image](https://github.com/user-attachments/assets/1005bc5c-c91e-4c02-b28a-93cd822f3e4c)
+
+---
+
+### Проверка доступа к API с токеном
+![image](https://github.com/user-attachments/assets/cab0bf65-3c83-4f01-a687-47c7df9760fe)
+
+---
+
+### Тестирование через Django shell
+```bash
+python manage.py shell
+```
+![image](https://github.com/user-attachments/assets/778caba8-c0c1-4900-93ad-3b51a3614a4d)
+
+---
+
+Все шаги выполнены, создаю пул реквест.
