@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-f(9_o1!5tq9yxo)x^%f&b2pnj^+2zc*sjon&9(4a4#hdir^r3m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver']
 
 
 # Application definition
@@ -35,7 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'rest_framework.authtoken',
     'django.contrib.messages',
+    'django_cleanup.apps.CleanupConfig',
+    'rest_framework',
     'django.contrib.staticfiles',
     'myapp',
     'accounts',
@@ -125,3 +128,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',    
+        'rest_framework.authentication.SessionAuthentication',    
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  
+    ]
+}

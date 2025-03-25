@@ -4,6 +4,9 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from .models import Person, CarAccident
 from .forms import CarAccidentForm
+from rest_framework import viewsets
+from .models import Person, CarAccident
+from .serializers import PersonSerializer, CarAccidentSerializer
 
 class HomePageView(TemplateView):
     template_name = 'myapp/home.html'
@@ -34,3 +37,11 @@ class JokesView(TemplateView):
             # Добавьте остальные анекдоты
         ]
         return context
+
+class PersonViewSet(viewsets.ModelViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+
+class CarAccidentViewSet(viewsets.ModelViewSet):
+    queryset = CarAccident.objects.all()
+    serializer_class = CarAccidentSerializer
